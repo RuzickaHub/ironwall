@@ -35,7 +35,7 @@ jobs:
           port: ${{ secrets.SFTP_PORT || 22 }}
           ssh_private_key: ${{ secrets.SFTP_SSH_KEY }}
           local_path: './*'
-          remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
+          remote_path: ${{ secrets.SFTP_REMOTE_PATH || '/var/www/html' }}
           sftp_only: true
           args: '--exclude=.git --exclude=.github --exclude=uploads --exclude=build --exclude=config.php'
 
