@@ -23,7 +23,9 @@ jobs:
 
       - name: Validate PHP syntax
         run: |
-          find . -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"
+          find . -name "*.php" -print0 | while IFS= read -r -d '' file; do
+            php -l "$file" || exit 1
+          done
 
       - name: Deploy via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
